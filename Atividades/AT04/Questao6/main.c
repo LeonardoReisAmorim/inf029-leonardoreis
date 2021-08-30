@@ -3,14 +3,12 @@
 
 int main(){
 	int i;
-    char letras[3];
+    ler3letras letras;
+    
+    letras=lerletras();
 
     for(i=0;i<3;i++){
-        letras[i]=ler3letras();
-    }
-
-    for(i=0;i<3;i++){
-        printf("\nletra :%c\n",letras[i]);
+        printf("\nletra %d... eh a letra: %c\n",i+1,letras.letras[i]);
     }
 	return 0;
 }

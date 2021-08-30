@@ -1,15 +1,20 @@
 #include <stdio.h>
 
-char ler3letras(){
-    int i;
-    char letra[3];
+typedef struct ler3letras
+{
+    char letras[3];
+}ler3letras;
 
+
+ler3letras lerletras(){
+    ler3letras letras;
+    int i;
     for(i=0;i<3;i++){
-        printf("\ndigite a letra: \n");
-        scanf(" %c",&letra[i]);
-        
-        
-        return letra[i];
+        printf("\ndigite a %d.  Letra: \n",i+1);
+        letras.letras[i] = getchar();
+        fflush(stdin);
     }
+
+    return letras;
 }
 
