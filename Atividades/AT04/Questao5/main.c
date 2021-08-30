@@ -2,15 +2,14 @@
 #include "ler4Numeros.h"
 
 int main(){
-    fournumbers numbers[4];
+    fournumbers numbers;
     int i=0;
 
-    for(i=0;i<4;i++){
-        numbers[i]=ler4numeros();
-    }
+    numbers=ler4numeros();
+
     printf("\n");
     for(i=0;i<4;i++){
-        printf("numero: %d e: %d\n",i+1,numbers[i]);
+        printf("numero: %d e: %d\n",i+1,numbers.numero[i]);
     }
 
 	return 0;

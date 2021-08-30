@@ -1,15 +1,16 @@
 #include <stdio.h>
 
 typedef struct fournumbers{
-    int numero;  
+    int numero[4];  
 } fournumbers;
 
 fournumbers ler4numeros(){
-    fournumbers numbersfour[4];
+    fournumbers numbersfour;
     int i; 
     for(i=0;i<4;i++){
-        printf("digite o numero: ");
-        scanf("%d",&numbersfour[i].numero);
-        return numbersfour[i];
+        printf("numero: %d.  Digite o numero: ",i+1);
+        scanf("%d",&numbersfour.numero[i]);
     }
+
+    return numbersfour;
 }
