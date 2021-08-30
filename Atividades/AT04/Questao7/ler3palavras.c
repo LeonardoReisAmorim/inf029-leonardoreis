@@ -2,16 +2,25 @@
 
 typedef struct ler3palavras
 {
-    char palavra[20];
+    char palavra1[20];
+    char palavra2[20];
+    char palavra3[20];
 }ler3palavras;
 
 ler3palavras lerpalavras(){
-    int i;
-    ler3palavras palavra[3];
+    ler3palavras palavra;
 
-    for(i=0;i<3;i++){
-        printf ("Digite a palavra: \n");
-        gets(palavra[i].palavra);
-        return palavra[i];
-    }
+    printf ("Digite a primeira palavra: \n");
+    gets(palavra.palavra1);
+    fflush(stdin);
+
+    printf ("Digite a segunda palavra: \n");
+    gets(palavra.palavra2);
+    fflush(stdin);
+
+    printf ("Digite a terceira palavra: \n");
+    gets(palavra.palavra3);
+    fflush(stdin);
+
+    return palavra;
 }

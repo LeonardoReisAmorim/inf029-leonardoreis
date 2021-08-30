@@ -3,16 +3,13 @@
 
 int main(){
     
-    ler3palavras palavras[3];
-    int i;
+    ler3palavras palavras;
 
-    for(i=0;i<3;i++){
-        palavras[i]=lerpalavras();
-    }
-    printf("\n");
-    for(i=0;i<3;i++){
-        printf("a palavra %d e %s\n",i+1,palavras[i]);
-    }
+    palavras=lerpalavras();
+
+    printf("a primeira palavra eh: %s\n",palavras.palavra1);
+    printf("a segunda palavra eh: %s\n",palavras.palavra2);
+    printf("a terceira palavra eh: %s\n",palavras.palavra3);
 
 	return 0;
 }
