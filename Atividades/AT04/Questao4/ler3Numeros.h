@@ -1,1 +1,1 @@
-int ler3numeros();
+void ler3numeros(int v,int x[]);
