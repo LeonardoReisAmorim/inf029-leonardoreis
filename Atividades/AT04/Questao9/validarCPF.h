@@ -1,1 +1,1 @@
-int validarCPF();
+int validarCPF(char cpf[]);

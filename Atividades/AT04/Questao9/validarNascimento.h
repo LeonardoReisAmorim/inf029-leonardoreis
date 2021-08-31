@@ -1,0 +1,1 @@
+int validarNascimento(char nascimento[]);

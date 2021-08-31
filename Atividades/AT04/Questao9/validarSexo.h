@@ -1,1 +1,1 @@
-int validarsexo();
+int validarsexo(char sexo);
