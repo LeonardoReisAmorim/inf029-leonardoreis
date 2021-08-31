@@ -7,8 +7,8 @@
 typedef struct cadastrarCliente
 {
     char nome[20];
-    char data_nasc[11];
-    char cpf[15];
+    char data_nasc[12];
+    char cpf[16];
     char sexo;
 }cadastrarCliente;
 
@@ -22,7 +22,7 @@ typedef struct verificacadastro
 verificacadastro cadastraCliente(){
     int i,n_cliente,n_data,n_cpf,n_sexo,tem=0;
     cadastrarCliente cliente;
-    char ax_nome[20],ax_data_nasc[11],ax_cpf[15],ax_sexo;
+    char ax_nome[20],ax_data_nasc[12],ax_cpf[16],ax_sexo;
     verificacadastro verifica;
 
     printf("\ndigite o nome do cliente: ");
@@ -37,7 +37,7 @@ verificacadastro cadastraCliente(){
     }
 
     printf("\ndigite a data de nascimento do cliente: ");
-    fgets(ax_data_nasc,11,stdin);
+    fgets(ax_data_nasc,12,stdin);
     n_data=validarNascimento(ax_data_nasc);
     if(n_data==1){
         //printf("\n************data valida\n");
@@ -48,7 +48,7 @@ verificacadastro cadastraCliente(){
     }
     
     printf("\ndigite o cpf do cliente: ");
-    fgets(ax_cpf,15,stdin);
+    fgets(ax_cpf,16,stdin);
     n_cpf=validarCPF(ax_cpf);
     if(n_cpf==1){
         //printf("\n************cpf valido\n");
@@ -78,6 +78,7 @@ verificacadastro cadastraCliente(){
         for(i=0; ax_nome[i] != '\0'; i++){
             cliente.nome[i]=ax_nome[i];
         }
+        printf("\n\n********************************************");
         cliente.nome[i]='\0';
         printf("\nnome do cliente.....: %s\n",cliente.nome);
         //---------------------------------------------
