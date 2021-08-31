@@ -46,7 +46,7 @@ verificacadastro cadastraCliente(){
         //printf("\n------------data invalida");
         verifica.verifica[1]=n_data;
     }
-
+    getchar();
     printf("\ndigite o cpf do cliente: ");
     fgets(ax_cpf,15,stdin);
     n_cpf=validarCPF(ax_cpf);
