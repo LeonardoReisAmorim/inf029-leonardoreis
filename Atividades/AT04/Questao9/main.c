@@ -2,16 +2,32 @@
 #include "cadastrarCliente.h"
 
 int main(){
+    verificacadastro retorno;
+    retorno = cadastraCliente();
+    int i,cadastrofeito=0,tem=0;
     
-    cadastrarCliente cliente;
+    printf("\n**********************************************************\n");
+    for(i=0;i<4;i++){
+        if(retorno.verifica[i]==0 && i==0){
+            printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o nome\n");
+            tem=1;
+        }else if(retorno.verifica[i]==0 && i==1){
+            printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar a data de nascimento\n");
+            tem=1;
+        }else if(retorno.verifica[i]==0 && i==2){
+            printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o cpf\n");
+            tem=1;
+        }else if(retorno.verifica[i]==0 && i==3){
+            printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o sexo\n");
+            tem=1;
+        }else{
+            cadastrofeito=0;
+        }
+    }
+    if(!cadastrofeito && !tem){
+        printf("\nCADASTRO FEITO COM SUCESSO\n");
+    }
+    printf("\n**********************************************************\n");
 
-    cliente = cadastraCliente();
-    /*
-    printf("**********************************************************");
-    printf("\no nome do cliente e: %s\n",cliente.nome);
-    printf("\na data de nascimento e: %s\n",cliente.data_nasc);
-    printf("\no cpf do cliente e: %s\n",cliente.cpf);
-    printf("\no sexo do cliente e: %c\n",cliente.sexo);
-    */
     return 0;
 }

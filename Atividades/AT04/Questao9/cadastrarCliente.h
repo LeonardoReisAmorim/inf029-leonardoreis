@@ -1,11 +1,8 @@
 #include <stdio.h>
 
-typedef struct cadastrarCliente
+typedef struct verificacadastro
 {
-    char nome[20];
-    char data_nasc[11];
-    char cpf[15];
-    char sexo;
-}cadastrarCliente;
+    int verifica[4];
+}verificacadastro;
 
-cadastrarCliente cadastraCliente();
+verificacadastro cadastraCliente();
