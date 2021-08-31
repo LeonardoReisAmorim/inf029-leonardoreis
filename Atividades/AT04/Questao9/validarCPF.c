@@ -2,7 +2,6 @@
 
 
 int validarCPF(char cpf[]){
-    printf("\n%s\n",cpf);
     char zeroadois[4],tres,quatroaseis[4],sete,oitoadez[4],onze,dozeetreze[3];
     int i=0,ax_quatroaseis=0,ax_oitoadez=0,ax_dozeetreze=0;
     
@@ -17,7 +16,6 @@ int validarCPF(char cpf[]){
     for (i=0; i < zeroadois[i] != '\0'; i++){
         if((zeroadois[i]>= 'a' && zeroadois[i]<='z') || (zeroadois[i]>='A' && zeroadois[i]<= 'Z')){
             return 0;
-            //erro=0;
         }
     }
 
@@ -31,7 +29,6 @@ int validarCPF(char cpf[]){
     //verificar se no digito 3 ha o ponto
     if(tres!='.'){
         return 0;
-        //erro=0;
     }
 
     //for para armazenar os digitos quatro a seis do cpf
@@ -46,7 +43,6 @@ int validarCPF(char cpf[]){
     for (i=0; i < ax_quatroaseis; i++){
         if((quatroaseis[i]>= 'a' && quatroaseis[i]<='z') || (quatroaseis[i]>='A' && quatroaseis[i]<= 'Z')){
             return 0;
-            //erro=0;
         }
     }
     
@@ -60,7 +56,6 @@ int validarCPF(char cpf[]){
     //verificar se no digito 7 ha o ponto
     if(sete!='.'){
         return 0;
-        //erro=0;
     }
     
     //for para armazenar os digitos oito a dez do cpf
@@ -75,7 +70,6 @@ int validarCPF(char cpf[]){
     for (i=0; i < ax_oitoadez; i++){
         if((oitoadez[i]>= 'a' && oitoadez[i]<='z') || (oitoadez[i]>='A' && oitoadez[i]<= 'Z')){
             return 0;
-            //erro=0;
         }
     }
 
@@ -89,7 +83,6 @@ int validarCPF(char cpf[]){
     //verificar se no digito 11 ha o traço
     if(onze!='-'){
         return 0;
-        //erro=0;
     }
 
     //for para armazenar os digitos dozeetreze do cpf
@@ -104,7 +97,6 @@ int validarCPF(char cpf[]){
     for (i=0; i < ax_dozeetreze; i++){
         if((dozeetreze[i]>= 'a' && dozeetreze[i]<='z') || (dozeetreze[i]>='A' && dozeetreze[i]<= 'Z') && (i>=0 && i<=2)){
             return 0;
-            //erro=0;
         }
     }
 

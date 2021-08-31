@@ -12,6 +12,15 @@ typedef struct cadastrarCliente
     char sexo;
 }cadastrarCliente;
 
+typedef struct verificacliente
+{
+    int verificanome;
+    int verificadata;
+    int verificacpf;
+    int verificasexo;
+}verificacliente;
+
+
 cadastrarCliente cadastraCliente(){
     int i,n_cliente,n_data,n_cpf,n_sexo;
     cadastrarCliente cliente;
@@ -21,36 +30,36 @@ cadastrarCliente cadastraCliente(){
     gets(ax_nome);
     n_cliente=validarnome(ax_nome);
     if(n_cliente==1){
-        printf("\nnome valido\n");
+        printf("\n************nome valido\n");
     }else{
-        printf("\nnome invalido\n");
+        printf("\n------------nome invalido\n");
     }
 
     printf("\ndigite a data de nascimento do cliente: ");
     gets(ax_data_nasc);
     n_data=validarNascimento(ax_data_nasc);
     if(n_data==1){
-        printf("\ndata valida\n");
+        printf("\n************data valida\n");
     }else{
-        printf("\n\ndata invalida");
+        printf("\n------------data invalida");
     }
 
     printf("\ndigite o cpf do cliente: ");
     gets(ax_cpf);
     n_cpf=validarCPF(ax_cpf);
     if(n_cpf==1){
-        printf("\ncpf valido\n");
+        printf("\n************cpf valido\n");
     }else{
-        printf("\ncpf invalido\n");
+        printf("\n------------cpf invalido\n");
     }
 
     printf("\ndigite o sexo do cliente: \nm ou M para masculino\nf ou F para feminino\ne O para outro ");
     ax_sexo = getchar();
     n_sexo=validarsexo(ax_sexo);
     if(n_sexo==1){
-        printf("sexo m, M, f ou F ou O outro\n");
+        printf("\n************sexo valido\n");
     }else{
-        printf("sexo invalido\n");
+        printf("\n------------sexo invalido\n");
     }
 
     return cliente;    

@@ -3,10 +3,8 @@
 
 
 int validarNascimento(char nascimento[]){
-    printf("\n%s\n",nascimento);
-    char zeroum[3],dois,tresquatro[3],cinco,seisanove[5];
-    int i=0,ax_tresquatro=0,ax_seisnove=0;
-    int numerozeroum, numerotresquatro;
+    char zeroum[2],dois,tresquatro[2],cinco,seisanove[4];
+    int i=0,ax_tresquatro=0,ax_seisnove=0,aux=0,numerozeroum[2], numerotresquatro[2],auxn1=0,aux2=0,auxn2=0,aux3=0;
 
     //for para armazenar os dois primeiros digitos da data
     for (i=0; i < nascimento[i] != '\0'; i++){
@@ -14,16 +12,27 @@ int validarNascimento(char nascimento[]){
             zeroum[i]=nascimento[i];
         }
     }
+    
+    for(i=0;i<zeroum[i];i++){
+        numerozeroum[auxn1]=zeroum[i] - '0';
+        auxn1++;
+    }
 
-    //printf("\n0 e 1...: %s\n",zeroum);
-    //numerozeroum = zeroum - '0';
-    //printf("\nnumero: %d\n",numerozeroum);
-
+    for(i=0;i<auxn1;i++){
+        if((numerozeroum[i]>=3 && i==0)){
+            aux2++;
+        }else if(numerozeroum[i]>=2 && i>0){
+            aux2++;
+        }
+    }
+    if(aux2>=2){
+        return 0;
+    }
+    
     //for para verificar se os dois primeiros digitos da data contem letras 
     for (i=0; i < zeroum[i] != '\0'; i++){
         if((zeroum[i]>= 'a' && zeroum[i]<='z') || (zeroum[i]>='A' && zeroum[i]<= 'Z')){
             return 0;
-            //erro=0;
         }
     }
 
@@ -34,92 +43,77 @@ int validarNascimento(char nascimento[]){
         }
     }
 
-    //printf("\ndigito 2 %c\n",dois);
-
-    //verificar se no digito 2 ha a barra
+    //verificar se no digito 2 tem a barra
     if(dois!='/'){
         return 0;
-        //erro=0;
     }
 
-    //for para armazenar os dois primeiros digitos da data
+    //for para armazenar os digitos 3 e 4 da data
     for (i=0; i < nascimento[i] != '\0'; i++){
-        if(i<=1){
-            zeroum[i]=nascimento[i];
+        if(i>=3 && i<=4){
+            tresquatro[ax_tresquatro]=nascimento[i];
+            ax_tresquatro++;
         }
     }
 
-    //printf("\n0 e 1...: %s\n",zeroum);
-    //numerozeroum = zeroum - '0';
-    //printf("\nnumero: %d\n",numerozeroum);
+    for(i=0;i<ax_tresquatro;i++){
+        numerotresquatro[auxn2]=tresquatro[i] - '0';
+        auxn2++;
+    }
 
-    //for para verificar se os dois primeiros digitos da data contem letras 
-    for (i=0; i < zeroum[i] != '\0'; i++){
-        if((zeroum[i]>= 'a' && zeroum[i]<='z') || (zeroum[i]>='A' && zeroum[i]<= 'Z')){
+    for(i=0;i<auxn2;i++){
+        if(numerotresquatro[i]>=1 && i==0){
+            aux3++;
+        }else if(numerotresquatro[i]>=3 && i>0){
+            aux3+=2;
+        }else if(numerotresquatro[i]==2 && i>0){
+            aux3++;
+        }
+    }
+    if(aux3==3){
+       return 0;
+    }
+
+    //for para verificar se os digitos 3 e 4 da data contem letras 
+    for (i=0; i < ax_tresquatro; i++){
+        if((tresquatro[i]>= 'a' && tresquatro[i]<='z') || (tresquatro[i]>='A' && tresquatro[i]<= 'Z')){
             return 0;
-            //erro=0;
-        }
-    }
-    
-    /*
-    
-    //for para armazenar o sinal de ponto
-    for (i=0; i < cpf[i] != '\0'; i++){
-        if(i==7){
-            sete=cpf[i];
         }
     }
 
-    //verificar se no digito 7 ha o ponto
-    if(sete!='.'){
+    //for para armazenar o sinal de barra no digito cinco
+    for (i=0; i < nascimento[i] != '\0'; i++){
+        if(i==5){
+            cinco=nascimento[i];
+        }
+    }
+
+    //verificar se no digito 5 tem a barra
+    if(cinco!='/'){
         return 0;
-        //erro=0;
+    }
+
+    //for para armazenar os digitos de 6 a 9 da data
+    for (i=0; i < nascimento[i] != '\0'; i++){
+        if(i>=6 && i<=9){
+            seisanove[ax_seisnove]=nascimento[i];
+            ax_seisnove++;
+        }
+        if(i>9){
+            aux=1;
+        }
     }
     
-    //for para armazenar os digitos oito a dez do cpf
-    for (i=0; i < cpf[i] != '\0'; i++){
-        if(i>=8 && i<=10){
-            oitoadez[ax_oitoadez]=cpf[i];
-            ax_oitoadez++; 
-        }
-    }
-
-    //for para verificar se nos digitos 8 a 10 contem letras
-    for (i=0; i < ax_oitoadez; i++){
-        if((oitoadez[i]>= 'a' && oitoadez[i]<='z') || (oitoadez[i]>='A' && oitoadez[i]<= 'Z')){
-            return 0;
-            //erro=0;
-        }
-    }
-
-    //for para armazenar o sinal de traço
-    for (i=0; i < cpf[i] != '\0'; i++){
-        if(i==11){
-            onze=cpf[i];
-        }
-    }
-
-    //verificar se no digito 11 ha o traço
-    if(onze!='-'){
+    if(aux==1 || ax_seisnove<4){
         return 0;
-        //erro=0;
     }
 
-    //for para armazenar os digitos dozeetreze do cpf
-    for (i=0; i < cpf[i] != '\0'; i++){
-        if(i>=12 && i<=13){
-            dozeetreze[ax_dozeetreze]=cpf[i];
-            ax_dozeetreze++; 
-        }
-    }
-
-    //for para verificar se nos digitos 12 a 13 contem letras
-    for (i=0; i < ax_dozeetreze; i++){
-        if((dozeetreze[i]>= 'a' && dozeetreze[i]<='z') || (dozeetreze[i]>='A' && dozeetreze[i]<= 'Z') && (i>=0 && i<=2)){
+    //for para verificar se os digitos 3 e 4 da data contem letras 
+    for (i=0; i < ax_seisnove; i++){
+        if((seisanove[i]>= 'a' && seisanove[i]<='z') || (seisanove[i]>='A' && seisanove[i]<= 'Z')){
             return 0;
-            //erro=0;
         }
     }
-    */
+    
     return 1;
 }
