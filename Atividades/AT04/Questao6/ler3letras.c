@@ -12,8 +12,8 @@ ler3letras lerletras(){
     for(i=0;i<3;i++){
         printf("\ndigite a %d.  Letra: \n",i+1);
         letras.letras[i] = getchar();
-        fflush(stdin);
-        __fpurge(stdin);
+        getchar();
+        //__fpurge(stdin);
     }
 
     return letras;
