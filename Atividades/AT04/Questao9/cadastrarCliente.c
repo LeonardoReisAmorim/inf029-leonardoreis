@@ -26,7 +26,7 @@ verificacadastro cadastraCliente(){
     verificacadastro verifica;
 
     printf("\ndigite o nome do cliente: ");
-    gets(ax_nome);
+    fgets(ax_nome,20,stdin);
     n_cliente=validarnome(ax_nome);
     if(n_cliente==1){
         //printf("\n************nome valido\n");
@@ -37,7 +37,7 @@ verificacadastro cadastraCliente(){
     }
 
     printf("\ndigite a data de nascimento do cliente: ");
-    gets(ax_data_nasc);
+    fgets(ax_data_nasc,11,stdin);
     n_data=validarNascimento(ax_data_nasc);
     if(n_data==1){
         //printf("\n************data valida\n");
@@ -48,7 +48,7 @@ verificacadastro cadastraCliente(){
     }
 
     printf("\ndigite o cpf do cliente: ");
-    gets(ax_cpf);
+    fgets(ax_cpf,15,stdin);
     n_cpf=validarCPF(ax_cpf);
     if(n_cpf==1){
         //printf("\n************cpf valido\n");
