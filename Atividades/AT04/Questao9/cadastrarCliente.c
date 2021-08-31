@@ -46,7 +46,7 @@ verificacadastro cadastraCliente(){
         //printf("\n------------data invalida");
         verifica.verifica[1]=n_data;
     }
-    getchar();
+    
     printf("\ndigite o cpf do cliente: ");
     fgets(ax_cpf,15,stdin);
     n_cpf=validarCPF(ax_cpf);
@@ -57,7 +57,6 @@ verificacadastro cadastraCliente(){
         //printf("\n------------cpf invalido\n");
         verifica.verifica[2]=n_cpf;
     }
-
     printf("\ndigite o sexo do cliente: \nm ou M para masculino\nf ou F para feminino\ne O para outro ");
     ax_sexo = getchar();
     n_sexo=validarsexo(ax_sexo);
