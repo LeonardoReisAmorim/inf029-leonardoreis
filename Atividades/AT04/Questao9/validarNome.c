@@ -9,9 +9,9 @@ int validarnome(char nome[]){
         i++;
     }
 
-    if(achou<=20){
+    if(achou<=20){  
         return 1;
-    }else{
+    }else{  
         return 0;
     }
 }
