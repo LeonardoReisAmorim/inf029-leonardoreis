@@ -11,16 +11,15 @@ ler3palavras lerpalavras(){
     ler3palavras palavra;
 
     printf ("Digite a primeira palavra: \n");
-    gets(palavra.palavra1);
-    fflush(stdin);
+    fgets(palavra.palavra1,20,stdin);
+    
 
     printf ("Digite a segunda palavra: \n");
-    gets(palavra.palavra2);
-    fflush(stdin);
+    fgets(palavra.palavra2,20,stdin);
+    
 
     printf ("Digite a terceira palavra: \n");
-    gets(palavra.palavra3);
-    fflush(stdin);
-
+    fgets(palavra.palavra3,20,stdin);
+    
     return palavra;
 }
