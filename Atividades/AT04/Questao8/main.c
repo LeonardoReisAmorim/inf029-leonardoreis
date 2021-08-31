@@ -6,7 +6,7 @@ int main(){
     cadastrarCliente cliente;
 
     cliente = cadastraCliente();
-    printf("**********************************************************");
+    printf("\n**********************************************************\n");
     printf("\no nome do cliente e: %s\n",cliente.nome);
     printf("\na data de nascimento e: %s\n",cliente.data_nasc);
     printf("\no cpf do cliente e: %s\n",cliente.cpf);

@@ -13,13 +13,13 @@ cadastrarCliente cadastraCliente(){
     cadastrarCliente cliente;
     
     printf("\ndigite o nome do cliente: ");
-    gets(cliente.nome);
+    fgets(cliente.nome,20,stdin);
 
     printf("\ndigite a data de nascimento do cliente: ");
-    gets(cliente.data_nasc);
+    fgets(cliente.data_nasc,11,stdin);
 
     printf("\ndigite o cpf do cliente: ");
-    gets(cliente.cpf);
+    fgets(cliente.cpf,15,stdin);
 
     printf("\ndigite o sexo do cliente: ");
     cliente.sexo = getchar();
