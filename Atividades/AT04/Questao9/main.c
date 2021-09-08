@@ -2,22 +2,22 @@
 #include "cadastrarCliente.h"
 
 int main(){
-    verificacadastro retorno;
-    retorno = cadastraCliente();
+    cadastrarCliente cliente;
+    cliente = cadastraCliente();
     int i,cadastrofeito=0,tem=0;
     
     printf("\n**********************************************************\n");
     for(i=0;i<4;i++){
-        if(retorno.verifica[i]==0 && i==0){
+        if(cliente.verifica[i]==0 && i==0){
             printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o nome\n");
             tem=1;
-        }else if(retorno.verifica[i]==0 && i==1){
+        }else if(cliente.verifica[i]==0 && i==1){
             printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar a data de nascimento\n");
             tem=1;
-        }else if(retorno.verifica[i]==0 && i==2){
+        }else if(cliente.verifica[i]==0 && i==2){
             printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o cpf\n");
             tem=1;
-        }else if(retorno.verifica[i]==0 && i==3){
+        }else if(cliente.verifica[i]==0 && i==3){
             printf("\nCADASTRO NAO REALIZADO. erro ao cadastrar o sexo\n");
             tem=1;
         }else{

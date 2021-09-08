@@ -6,24 +6,18 @@
 
 typedef struct cadastrarCliente
 {
+    int verifica[4];
     char nome[50];
     char data_nasc[12];
     char cpf[16];
     char sexo;
 }cadastrarCliente;
 
-typedef struct verificacadastro
-{
-    int verifica[4];
-}verificacadastro;
 
-
-
-verificacadastro cadastraCliente(){
+cadastrarCliente cadastraCliente(){
     int i,n_cliente,n_data,n_cpf,n_sexo,tem=0;
     cadastrarCliente cliente;
     char ax_nome[50],ax_data_nasc[12],ax_cpf[16],ax_sexo;
-    verificacadastro verifica;
 
     printf("\ndigite o nome do cliente: ");
     fgets(ax_nome,50,stdin);
@@ -31,11 +25,10 @@ verificacadastro cadastraCliente(){
     n_cliente=validarnome(ax_nome);
     if(n_cliente==1){
         //printf("\n************nome valido\n");
-        verifica.verifica[0]=n_cliente;
+        cliente.verifica[0]=n_cliente;
         
     }else{
-
-        verifica.verifica[0]=n_cliente;
+        cliente.verifica[0]=n_cliente;
         //printf("\n------------nome invalido\n");
     }
     
@@ -45,10 +38,10 @@ verificacadastro cadastraCliente(){
     n_data=validarNascimento(ax_data_nasc);
     if(n_data==1){
         //printf("\n************data valida\n");
-        verifica.verifica[1]=n_data;
+        cliente.verifica[1]=n_data;
     }else{
         //printf("\n------------data invalida");
-        verifica.verifica[1]=n_data;
+        cliente.verifica[1]=n_data;
     }
     
     printf("\ndigite o cpf do cliente: ");
@@ -57,10 +50,10 @@ verificacadastro cadastraCliente(){
     n_cpf=validarCPF(ax_cpf);
     if(n_cpf==1){
         //printf("\n************cpf valido\n");
-        verifica.verifica[2]=n_cpf;
+        cliente.verifica[2]=n_cpf;
     }else{
         //printf("\n------------cpf invalido\n");
-        verifica.verifica[2]=n_cpf;
+        cliente.verifica[2]=n_cpf;
     }
     printf("\ndigite o sexo do cliente: \nm ou M para masculino\nf ou F para feminino\ne O para outro ");
     
@@ -68,14 +61,14 @@ verificacadastro cadastraCliente(){
     n_sexo=validarsexo(ax_sexo);
     if(n_sexo==1){
         //printf("\n************sexo valido\n");
-        verifica.verifica[3]=n_sexo;
+        cliente.verifica[3]=n_sexo;
     }else{
         //printf("\n------------sexo invalido\n");
-        verifica.verifica[3]=n_sexo;
+        cliente.verifica[3]=n_sexo;
     }
 
     for(i=0;i<4;i++){
-        if(verifica.verifica[i]==0){
+        if(cliente.verifica[i]==0){
             tem=1;
         }
     }
@@ -104,5 +97,5 @@ verificacadastro cadastraCliente(){
         printf("\nsexo do cliente........: %c\n",cliente.sexo);
     }
 
-    return verifica;    
+    return cliente;    
 }
