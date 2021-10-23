@@ -25,6 +25,8 @@
 #include "LeonardoReisAmorim-20201160029-T1.h" // Substitua pelo seu arquivo de header renomeado
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
+
 /*
 ## função utilizada para testes  ##
 
@@ -240,7 +242,7 @@ int q3(char *texto, char c, int isCaseSensitive)
     int qtdOcorrencias = 0, i=0, flag=0;
 
     if(isCaseSensitive){
-        for(int i = 0; texto[i] != '\0'; ++i){
+        for(int i = 0; texto[i] != '\0'; i++){
             if(texto[i] == c){
                 qtdOcorrencias++;
                 flag=1;
@@ -250,7 +252,7 @@ int q3(char *texto, char c, int isCaseSensitive)
             qtdOcorrencias=-1;
         }
     }else{
-        for(int i = 0; texto[i] != '\0'; ++i){
+        for(int i = 0; texto[i] != '\0'; i++){
             if(tolower(texto[i]) == tolower(c)){
                 qtdOcorrencias++;
                 flag=1;
@@ -280,7 +282,26 @@ int q3(char *texto, char c, int isCaseSensitive)
  */
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
-    int qtdOcorrencias = -1;
+    printf("\n\n");
+    int qtdOcorrencias = 0, i  = 0, j  = 0,t  = 0; 
+    while( strTexto[i] != '\0' ){ 
+        if( strTexto[i++] == strBusca[j] || (j = 0) ){
+            j++;
+        }
+        if( strBusca[j] == '\0' ){
+            j = 0, qtdOcorrencias++;
+            printf("\n%d\n",posicoes[j]);
+        }    
+    }
+    // int i  = 0; //! Variável inteira Índice do texto.
+ // int j  = 0; //! Variável inteira Índice da palavra.
+  //int t  = 0; //! Variável inteira quantidade de ocorrências de p em text.
+  //while( text[i] != '\0' ){ //! Laço continuar até que o texto chegue ao fim.
+  /// / if( text[i++] == p[j] || (j = 0) )j++;//! Se os caracteres coincidem incrementa.
+    //! Se não reinicia se o índice da palavra com j <- 0 dentro operador OU.
+    //if( p[j] == '\0' )printf( "%d-%s\n", 1+t, p ), j = 0, t++;//! j atingiu o max
+    //!de incremento, por tanto, palavra encontrada então imprimi, incrementa o contador e
+    //!reinicia o índice da palavra j <- 0.
 
     return qtdOcorrencias;
 }
@@ -297,7 +318,6 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 
 int q5(int num)
 {
-    //O que ela faz e ir pegando o resto da divisao do numero por 10, ou seja, o digito mais a direita do numero e somar com o numero que temos ate o momento vezes 10.
     int inv = 0;
     while (num > 0) {
         inv = 10 * inv + num % 10;

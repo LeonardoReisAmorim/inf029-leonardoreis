@@ -35,10 +35,10 @@ int main()
     //testFatorial();
     //testQ1();
     //testQ2();
-    testQ3();
-    //testQ4();
-    testQ5();
-    testQ6();
+    //testQ3();
+    testQ4();
+    //testQ5();
+    //testQ6();
 }
 
 void testSomar()
@@ -146,6 +146,7 @@ void testQ4()
     char strBusca[50];
     int posicoes[30];
     int i;
+    
     for (i = 0; i < 30; i++)
     {
         posicoes[i] = -1;
