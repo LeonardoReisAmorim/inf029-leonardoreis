@@ -318,23 +318,29 @@ int q5(int num)
 
 int q6(int numerobase, int numerobusca)
 {
-    int qtdOcorrencias = 0;
+    int qtdOcorrencias = 0, i=0,j=0,aux=0;
+    
     while (numerobase > 0)
     {
         if(numerobase % 10 == numerobusca) {
 		    qtdOcorrencias++;
-	    }
-        if(numerobase % 10 == numerobase) {
-		    return qtdOcorrencias;
-	    }
-        numerobase /= 10;
+	    }else{
+            aux = numerobase;
+            while (aux > 0){
+                aux = numerobase % 10;
+                i++;
+                if(i==3 || i==4){
+                    j = 10*j + aux; 
+                }
+                aux /= 10;
+            }
+        }
+        
+        
+        numerobase /= 10; 
     }
-    
-    //if(numerobase % 10 == numerobusca) {
-	//	qtdOcorrencias++;
-	//}
-	if(numerobase % 10 == numerobase) {
-		return qtdOcorrencias;
-	}
-	//q6(numerobase / 10, numerobusca);
+    if(j==numerobusca){
+        qtdOcorrencias++;
+    }
+	return qtdOcorrencias;
 }
