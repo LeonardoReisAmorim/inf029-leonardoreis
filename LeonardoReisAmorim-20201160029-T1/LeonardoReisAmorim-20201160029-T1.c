@@ -148,24 +148,32 @@ DataQuebrada quebraData(char data[]){
  */
 int q1(char *data)
 {
-    int datavalida = 1;
+    int datavalida = 1, iDia, iMes, iAno;
+    DataQuebrada dataQuebrada = quebraData(data);
 
-    //quebrar a string data em strings sDia, sMes, sAno
+    printf("\n%s\n", data);
+    //printf("\n---------------\n");
+	//printf("Dia: %d\n", dataQuebrada.iDia);
+	//printf("Mes: %d\n", dataQuebrada.iMes);
+	//printf("Ano: %d\n", dataQuebrada.iAno);
+    //printf("\n---------------\n");
 
-    //DataQuebrada dataQuebrada = quebraData(data);
-    //if (dataQuebrada.valido == 0) return 0;
+    if (dataQuebrada.valido == 0) return 0;
 
-    //converter sDia, sMes e sAno em inteiros (ex: atoi)
-
-    //criar as variáveis iDia, iMes, iAno
-    //int iAno = atoi(dataQuebrada.sAno);
-
-    //printf("%s\n", data);
-
-    if (datavalida)
-        return 1;
-    else
-        return 0;
+    if ((dataQuebrada.iDia == 29 && dataQuebrada.iMes == 2) && (dataQuebrada.iAno%4 == 0 && (dataQuebrada.iAno%100 != 0 || dataQuebrada.iAno%400 == 0))){
+        datavalida = 1;
+        //return 1;
+    }else if((dataQuebrada.iDia > 0 && dataQuebrada.iDia < 29) && dataQuebrada.iMes == 2){
+        datavalida = 1;
+        //return 0;
+    }else if((dataQuebrada.iDia > 0 && dataQuebrada.iDia < 31) && (dataQuebrada.iMes == 4 || dataQuebrada.iMes == 6 || dataQuebrada.iMes == 9  || dataQuebrada.iMes == 11 )){
+        datavalida = 1;
+    }else if((dataQuebrada.iDia > 0 && dataQuebrada.iDia <= 31) && (dataQuebrada.iMes == 1 || dataQuebrada.iMes == 3 || dataQuebrada.iMes == 5 || dataQuebrada.iMes == 7 || dataQuebrada.iMes == 8 || dataQuebrada.iMes == 10 || dataQuebrada.iMes == 12 )){
+        datavalida = 1;
+    }else{
+        datavalida = 0;
+    }   
+    return datavalida;
 }
 
 
@@ -189,33 +197,40 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     //         29 dias   30 (1 mês)   30 dias
 
     //calcule os dados e armazene nas três variáveis a seguir
-    int nDias, nMeses, nAnos;
+    int nDias, nMeses, nAnos, retorno = 1;
 
-    if (q1(datainicial) == 0)
-        return 2;
-
-    if (q1(datafinal) == 0)
-        return 3;
+    if (q1(datainicial) == 0){
+        retorno = 2;
+    }else if(q1(datafinal) == 0){
+        retorno = 3;
+    }
 
     DataQuebrada dqInicial = quebraData(datainicial);
     DataQuebrada dqFim = quebraData(datafinal);
-
-    if (dqInicial.iAno > dqFim.iAno)
-        return 4;
-    else if (dqInicial.iAno == dqFim.iAno){
-        if (dqInicial.iMes > dqFim.iMes)
-            return 4;
-        else if (dqInicial.iMes == dqFim.iMes){
-            if (dqInicial.iDia > dqFim.iDia)
-                return 4;
-        } 
-    }    
-
 
     nDias = 4;
     nMeses = 10;
     nAnos = 2;
 
+    if (dqInicial.iAno > dqFim.iAno)
+        retorno = 4;
+    else if (dqInicial.iAno == dqFim.iAno){
+        if (dqInicial.iMes > dqFim.iMes)
+            retorno = 4;
+        else if (dqInicial.iMes == dqFim.iMes){
+            if (dqInicial.iDia > dqFim.iDia)
+                retorno = 4;
+        } 
+    }    
+    if(dqFim.iAno >= dqInicial.iAno){
+        nAnos = dqFim.iAno - dqInicial.iAno;
+    }
+    if(dqFim.iMes >= dqInicial.iMes){
+        nMeses = dqFim.iMes - dqInicial.iMes;
+    }
+    if(dqFim.iDia >= dqInicial.iDia){
+        nDias = dqFim.iDia - dqInicial.iDia;
+    }
     /*mantenha o código abaixo, para salvar os dados  
     nos parâmetros da funcao
     */
@@ -224,7 +239,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     *qtdMeses = nMeses;
 
     //coloque o retorno correto
-    return 1;
+    return retorno;
 }
 
 /*
@@ -287,10 +302,15 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     while( strTexto[i] != '\0' ){ 
         if( strTexto[i++] == strBusca[j] || (j = 0) ){
             j++;
+            
         }
         if( strBusca[j] == '\0' ){
+
+            //printf("\nposicao string texto %d\n",strTexto[i]);
+            
+            //printf("\n%d\n",posicoes[j]);
             j = 0, qtdOcorrencias++;
-            printf("\n%d\n",posicoes[j]);
+            
         }    
     }
     // int i  = 0; //! Variável inteira Índice do texto.
