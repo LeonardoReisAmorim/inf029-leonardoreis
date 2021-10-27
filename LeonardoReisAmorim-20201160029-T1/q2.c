@@ -21,7 +21,7 @@ int main (){
     
     if (qtdMeses < 0){
         qtdAnos--;
-        qtdMeses = 12 + iMeses;
+        qtdMeses = 12 ;
     }
     if (qtdDias < 0){
         qtdMeses--;

@@ -151,7 +151,7 @@ int q1(char *data)
     int datavalida = 1, iDia, iMes, iAno;
     DataQuebrada dataQuebrada = quebraData(data);
 
-    printf("\n%s\n", data);
+    //printf("\n%s\n", data);
     //printf("\n---------------\n");
 	//printf("Dia: %d\n", dataQuebrada.iDia);
 	//printf("Mes: %d\n", dataQuebrada.iMes);
@@ -200,37 +200,44 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     int nDias, nMeses, nAnos, retorno = 1;
 
     if (q1(datainicial) == 0){
-        retorno = 2;
+        return 2;
     }else if(q1(datafinal) == 0){
-        retorno = 3;
+        return 3;
     }
 
     DataQuebrada dqInicial = quebraData(datainicial);
     DataQuebrada dqFim = quebraData(datafinal);
 
-    nDias = 4;
-    nMeses = 10;
-    nAnos = 2;
+    //nDias = 4;
+    //nMeses = 10;
+    //nAnos = 2;
 
     if (dqInicial.iAno > dqFim.iAno)
-        retorno = 4;
+        return 4;
     else if (dqInicial.iAno == dqFim.iAno){
         if (dqInicial.iMes > dqFim.iMes)
-            retorno = 4;
+            return 4;
         else if (dqInicial.iMes == dqFim.iMes){
             if (dqInicial.iDia > dqFim.iDia)
-                retorno = 4;
+                return 4;
         } 
-    }    
-    if(dqFim.iAno >= dqInicial.iAno){
-        nAnos = dqFim.iAno - dqInicial.iAno;
     }
-    if(dqFim.iMes >= dqInicial.iMes){
-        nMeses = dqFim.iMes - dqInicial.iMes;
+    //TESTE 4,TESTE 6
+    nAnos = dqFim.iAno - dqInicial.iAno;
+    nMeses = dqFim.iMes - dqInicial.iMes;
+    nDias = dqFim.iDia - dqInicial.iDia;
+    
+    //realiza a conversão de meses e dias em que o mes da data inicial seja de 31 dias.
+    if( (dqInicial.iDia > 0 && dqInicial.iDia <= 31) && (dqInicial.iMes == 1 || dqInicial.iMes == 3 || dqInicial.iMes == 5 || dqInicial.iMes == 7 || dqInicial.iMes == 8 || dqInicial.iMes == 10 || dqInicial.iMes == 12) && (dqInicial.iMes + 1 == dqFim.iMes)){
+        nMeses--;
+        nDias = 30;
     }
-    if(dqFim.iDia >= dqInicial.iDia){
-        nDias = dqFim.iDia - dqInicial.iDia;
-    }
+    
+
+    printf("\n qtd dias: %d",nDias);
+    printf("\n qtd meses: %d",nMeses);
+    printf("\n qtd ano: %d",nAnos);
+    printf("\n\n");
     /*mantenha o código abaixo, para salvar os dados  
     nos parâmetros da funcao
     */
@@ -238,8 +245,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     *qtdAnos = nAnos;
     *qtdMeses = nMeses;
 
-    //coloque o retorno correto
-    return retorno;
+    return 1;
 }
 
 /*
@@ -313,16 +319,6 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
             
         }    
     }
-    // int i  = 0; //! Variável inteira Índice do texto.
- // int j  = 0; //! Variável inteira Índice da palavra.
-  //int t  = 0; //! Variável inteira quantidade de ocorrências de p em text.
-  //while( text[i] != '\0' ){ //! Laço continuar até que o texto chegue ao fim.
-  /// / if( text[i++] == p[j] || (j = 0) )j++;//! Se os caracteres coincidem incrementa.
-    //! Se não reinicia se o índice da palavra com j <- 0 dentro operador OU.
-    //if( p[j] == '\0' )printf( "%d-%s\n", 1+t, p ), j = 0, t++;//! j atingiu o max
-    //!de incremento, por tanto, palavra encontrada então imprimi, incrementa o contador e
-    //!reinicia o índice da palavra j <- 0.
-
     return qtdOcorrencias;
 }
 
