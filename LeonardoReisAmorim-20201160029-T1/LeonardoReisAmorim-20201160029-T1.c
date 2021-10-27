@@ -249,7 +249,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     //printf("\n qtd meses: %d",nMeses);
     //printf("\n qtd ano: %d",nAnos);
     //printf("\n\n");
-    
+
     /*mantenha o código abaixo, para salvar os dados  
     nos parâmetros da funcao
     */
@@ -316,21 +316,27 @@ int q3(char *texto, char c, int isCaseSensitive)
 int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
     printf("\n\n");
-    int qtdOcorrencias = 0, i  = 0, j  = 0,t  = 0; 
-    while( strTexto[i] != '\0' ){ 
-        if( strTexto[i++] == strBusca[j] || (j = 0) ){
-            j++;
-            
+    int qtdOcorrencias = 0, i=0, j=0, k=0, l=0; 
+    l=strlen(strBusca);
+    
+    for(i=0;i<strTexto[i+l-1];i++){
+        k=1;
+        for(j=0;j<=l-1;j++){
+            if(strTexto[k]!=strBusca[j]){
+                posicoes[0] = k;
+                break;
+            }
+            k++;
         }
-        if( strBusca[j] == '\0' ){
-
-            //printf("\nposicao string texto %d\n",strTexto[i]);
-            
-            //printf("\n%d\n",posicoes[j]);
-            j = 0, qtdOcorrencias++;
-            
-        }    
+        if(j==l){
+            //return i;      
+        }
     }
+    printf("\n======================\n");
+    printf("\nposicoes: %d",posicoes[0]);
+    printf("\nqtd ocorrencias: %d",qtdOcorrencias);
+    printf("\n======================\n");
+    //return -1; 
     return qtdOcorrencias;
 }
 
