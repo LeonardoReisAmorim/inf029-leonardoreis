@@ -151,13 +151,6 @@ int q1(char *data)
     int datavalida = 1, iDia, iMes, iAno;
     DataQuebrada dataQuebrada = quebraData(data);
 
-    //printf("\n%s\n", data);
-    //printf("\n---------------\n");
-	//printf("Dia: %d\n", dataQuebrada.iDia);
-	//printf("Mes: %d\n", dataQuebrada.iMes);
-	//printf("Ano: %d\n", dataQuebrada.iAno);
-    //printf("\n---------------\n");
-
     if (dataQuebrada.valido == 0) return 0;
 
     if ((dataQuebrada.iDia == 29 && dataQuebrada.iMes == 2) && (dataQuebrada.iAno%4 == 0 && (dataQuebrada.iAno%100 != 0 || dataQuebrada.iAno%400 == 0))){
@@ -197,7 +190,7 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
     //         29 dias   30 (1 mês)   30 dias
 
     //calcule os dados e armazene nas três variáveis a seguir
-    int nDias, nMeses, nAnos, retorno = 1;
+    int nDias, nMeses, nAnos, retorno = 1, qtd_dias_mes_anterior=0;
 
     if (q1(datainicial) == 0){
         return 2;
@@ -207,10 +200,6 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
 
     DataQuebrada dqInicial = quebraData(datainicial);
     DataQuebrada dqFim = quebraData(datafinal);
-
-    //nDias = 4;
-    //nMeses = 10;
-    //nAnos = 2;
 
     if (dqInicial.iAno > dqFim.iAno)
         return 4;
@@ -222,22 +211,45 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
                 return 4;
         } 
     }
-    //TESTE 4,TESTE 6
     nAnos = dqFim.iAno - dqInicial.iAno;
     nMeses = dqFim.iMes - dqInicial.iMes;
     nDias = dqFim.iDia - dqInicial.iDia;
-    
+
+    if (nMeses < 0){
+        nAnos--;
+        nMeses = 12;
+    }
+    if (nDias < 0){
+        nMeses--;
+        if((dqFim.iAno%4 == 0 && (dqFim.iAno%100 != 0 || dqFim.iAno%400 == 0))){
+            if((dqFim.iDia > 0 && dqFim.iDia <= 31) && (dqFim.iMes == 1 || dqFim.iMes == 3 || dqFim.iMes == 5 || dqFim.iMes == 7 || dqFim.iMes == 8 || dqFim.iMes == 10 || dqFim.iMes == 12)){
+                //mes final tem 31 dias
+                qtd_dias_mes_anterior = 30;
+                if(dqFim.iMes == 3){
+                    qtd_dias_mes_anterior = 29;
+                }
+            }else{
+
+            }
+        }else if((dqFim.iDia > 0 && dqFim.iDia < 31) || (dqFim.iMes == 4 || dqFim.iMes == 6 || dqFim.iMes == 9  || dqFim.iMes == 11)){
+            //mes final tem 30 dias
+            qtd_dias_mes_anterior = 31;
+            if(dqFim.iMes == 3){
+                qtd_dias_mes_anterior = 28;
+            }
+        }
+        nDias = qtd_dias_mes_anterior - dqInicial.iDia + dqFim.iDia;
+    }
     //realiza a conversão de meses e dias em que o mes da data inicial seja de 31 dias.
     if( (dqInicial.iDia > 0 && dqInicial.iDia <= 31) && (dqInicial.iMes == 1 || dqInicial.iMes == 3 || dqInicial.iMes == 5 || dqInicial.iMes == 7 || dqInicial.iMes == 8 || dqInicial.iMes == 10 || dqInicial.iMes == 12) && (dqInicial.iMes + 1 == dqFim.iMes)){
-        nMeses--;
         nDias = 30;
     }
-    
 
-    printf("\n qtd dias: %d",nDias);
-    printf("\n qtd meses: %d",nMeses);
-    printf("\n qtd ano: %d",nAnos);
-    printf("\n\n");
+    //printf("\n qtd dias: %d",nDias);
+    //printf("\n qtd meses: %d",nMeses);
+    //printf("\n qtd ano: %d",nAnos);
+    //printf("\n\n");
+    
     /*mantenha o código abaixo, para salvar os dados  
     nos parâmetros da funcao
     */
