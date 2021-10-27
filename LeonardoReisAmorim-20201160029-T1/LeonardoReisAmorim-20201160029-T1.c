@@ -272,27 +272,20 @@ int q2(char *datainicial, char *datafinal, int *qtdDias, int *qtdMeses, int *qtd
  */
 int q3(char *texto, char c, int isCaseSensitive)
 {
-    int qtdOcorrencias = 0, i=0, flag=0;
+    int qtdOcorrencias = 0, i=0;
 
     if(isCaseSensitive){
         for(int i = 0; texto[i] != '\0'; i++){
             if(texto[i] == c){
                 qtdOcorrencias++;
-                flag=1;
             }
         }
-        if(!flag){
-            qtdOcorrencias=-1;
-        }
+        
     }else{
         for(int i = 0; texto[i] != '\0'; i++){
             if(tolower(texto[i]) == tolower(c)){
                 qtdOcorrencias++;
-                flag=1;
             }
-        }
-        if(!flag){
-            qtdOcorrencias=-1;
         }
     }
     return qtdOcorrencias;
@@ -313,30 +306,33 @@ int q3(char *texto, char c, int isCaseSensitive)
         O retorno da função, n, nesse caso seria 1;
 
  */
-int q4(char *strTexto, char *strBusca, int posicoes[30])
+int compara_string(char busca[], char texto[], int j)
 {
-    printf("\n\n");
-    int qtdOcorrencias = 0, i=0, j=0, k=0, l=0; 
-    l=strlen(strBusca);
-    
-    for(i=0;i<strTexto[i+l-1];i++){
-        k=1;
-        for(j=0;j<=l-1;j++){
-            if(strTexto[k]!=strBusca[j]){
-                posicoes[0] = k;
-                break;
-            }
-            k++;
+    int i;
+
+    for(i = 0; i < strlen(busca); i++){
+        if(busca[i] != texto[j]){
+            return 0;
         }
-        if(j==l){
-            //return i;      
+        j++;
+    }
+    return 1;
+}
+
+int q4(char strTexto[], char strBusca[], int posicoes[30])
+{
+    int qtdOcorrencias=0, i, j=0;
+
+    for(i = 0; i < strlen(strTexto); i++){
+        if(strTexto[i] == strBusca[0] ){
+            if(compara_string(strBusca, strTexto, i) == 1){
+                qtdOcorrencias++;
+                posicoes[j] = i+1;
+                posicoes[j+1] = i+strlen(strBusca);
+                j += 2;  
+            }
         }
     }
-    printf("\n======================\n");
-    printf("\nposicoes: %d",posicoes[0]);
-    printf("\nqtd ocorrencias: %d",qtdOcorrencias);
-    printf("\n======================\n");
-    //return -1; 
     return qtdOcorrencias;
 }
 
