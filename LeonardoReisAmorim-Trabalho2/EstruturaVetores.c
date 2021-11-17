@@ -202,7 +202,6 @@ int getDadosDeTodasEstruturasAuxiliares(int vetorAux[], int vetTam)
                 if(vetorPrincipal[i][m]){
                     vetorAux[j] = *(vetorPrincipal[i][m]);
                     j++;
-                    printf("\nj: %d\n",j);
                 }
             }
         }
