@@ -16,18 +16,28 @@ void testeMudarTamanhoEstrutura();
 void testeListaEncadeada();
 
 int main()
-{
+{   
     inicializar();
+    
     testeInserirSemNada();
+    
     testeCriarEstrutura();
+    
     testeInserirComEstrutura();
+    
     testeExcluir();
+    
     testeExcluirNumeroEspecifico();
+    
     testeListar();
+    
     testeRetornarTodosNumeros();
+    /*
     testeMudarTamanhoEstrutura();
+    
     testeListaEncadeada();
     finalizar();
+    */
 }
 int ligado = 0;
 void show_log(char *str)
@@ -110,23 +120,23 @@ void testeListar()
     printf("%d\n", inserirNumeroEmEstrutura(2, 7) == SUCESSO);
     printf("%d\n", inserirNumeroEmEstrutura(2, -9) == SUCESSO);
 
-    int vet[2];
+    int vet[2], vetTam = 2;
 
-    printf("%d\n", getDadosEstruturaAuxiliar(1, vet) == SEM_ESTRUTURA_AUXILIAR);
-    printf("%d\n", getDadosEstruturaAuxiliar(11, vet) == POSICAO_INVALIDA);
-    printf("%d\n", getDadosEstruturaAuxiliar(2, vet) == SUCESSO);
+    printf("%d\n", getDadosEstruturaAuxiliar(1, vet, vetTam) == SEM_ESTRUTURA_AUXILIAR);
+    printf("%d\n", getDadosEstruturaAuxiliar(11, vet, vetTam) == POSICAO_INVALIDA);
+    printf("%d\n", getDadosEstruturaAuxiliar(2, vet, vetTam) == SUCESSO);
 
     printf("%d\n", vet[0] == 7);
     printf("%d\n", vet[1] == -9);
 
-    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(1, vet) == SEM_ESTRUTURA_AUXILIAR);
-    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(11, vet) == POSICAO_INVALIDA);
-    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(2, vet) == SUCESSO);
+    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(1, vet, vetTam) == SEM_ESTRUTURA_AUXILIAR);
+    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(11, vet, vetTam) == POSICAO_INVALIDA);
+    printf("%d\n", getDadosOrdenadosEstruturaAuxiliar(2, vet, vetTam) == SUCESSO);
 
     printf("%d\n", vet[0] == -9);
     printf("%d\n", vet[1] == 7);
 
-    printf("%d\n", getDadosEstruturaAuxiliar(2, vet) == SUCESSO);
+    printf("%d\n", getDadosEstruturaAuxiliar(2, vet, vetTam) == SUCESSO);
 
     printf("%d\n", vet[0] == 7);
     printf("%d\n", vet[1] == -9);
@@ -142,10 +152,12 @@ void testeListar()
 void testeRetornarTodosNumeros()
 {
     show_log("testeRetornarTodosNumeros()");
-    int vet1[2];
-    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet1) == TODAS_ESTRUTURAS_AUXILIARES_VAZIAS);
 
-    printf("%d\n", getDadosOrdenadosDeTodasEstruturasAuxiliares(vet1) == TODAS_ESTRUTURAS_AUXILIARES_VAZIAS);
+    int vet1[2], vetTam = 2;
+
+    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet1, vetTam) == TODAS_ESTRUTURAS_AUXILIARES_VAZIAS);
+
+    printf("%d\n", getDadosOrdenadosDeTodasEstruturasAuxiliares(vet1, vetTam) == TODAS_ESTRUTURAS_AUXILIARES_VAZIAS);
 
     printf("%d\n", inserirNumeroEmEstrutura(2, 3) == SUCESSO);
     printf("%d\n", inserirNumeroEmEstrutura(2, 8) == SUCESSO);
@@ -167,8 +179,10 @@ void testeRetornarTodosNumeros()
 5 [1,34,12,6,27,-6, , , , ]
 */
     int vet[9];
+    
+    vetTam = 9;
 
-    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet) == SUCESSO);
+    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet, vetTam) == SUCESSO);
 
     printf("%d\n", vet[0] == 3);
     printf("%d\n", vet[1] == 8);
@@ -182,7 +196,7 @@ void testeRetornarTodosNumeros()
 
     int vet2[9];
 
-    printf("%d\n", getDadosOrdenadosDeTodasEstruturasAuxiliares(vet2) == SUCESSO);
+    printf("%d\n", getDadosOrdenadosDeTodasEstruturasAuxiliares(vet2, vetTam) == SUCESSO);
 
     printf("%d\n", vet2[0] == -6);
     printf("%d\n", vet2[1] == 0);
@@ -194,7 +208,7 @@ void testeRetornarTodosNumeros()
     printf("%d\n", vet2[7] == 27);
     printf("%d\n", vet2[8] == 34);
 
-    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet) == SUCESSO);
+    printf("%d\n", getDadosDeTodasEstruturasAuxiliares(vet, vetTam) == SUCESSO);
 
     printf("%d\n", vet[0] == 3);
     printf("%d\n", vet[1] == 8);
@@ -215,7 +229,6 @@ void testeRetornarTodosNumeros()
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho);
 Objetivo: modificar o tamanho da estrutura auxiliar da posição 'posicao' para o novo tamanho 'novoTamanho' + tamanho atual
 Suponha o tamanho inicial = x, e novo tamanho = n. O tamanho resultante deve ser x + n. Sendo que x + n deve ser sempre >= 1
-
 Rertono (int)
     SUCESSO - foi modificado corretamente o tamanho da estrutura auxiliar
     SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
@@ -226,7 +239,9 @@ Rertono (int)
 void testeMudarTamanhoEstrutura()
 {
     show_log("testeMudarTamanhoEstrutura()");
-    int vet[1];
+    
+    int vet[1], vetTam = 1;
+
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, -3) == NOVO_TAMANHO_INVALIDO);
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, -4) == NOVO_TAMANHO_INVALIDO);
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(11, 7) == POSICAO_INVALIDA);
@@ -236,13 +251,13 @@ void testeMudarTamanhoEstrutura()
     //modificar para tamanho de 3 para 1
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, -2) == SUCESSO);
     printf("%d\n", getQuantidadeElementosEstruturaAuxiliar(2) == 1);
-    printf("%d\n", getDadosEstruturaAuxiliar(2, vet) == SUCESSO);
+    printf("%d\n", getDadosEstruturaAuxiliar(2, vet, vetTam) == SUCESSO);
     printf("%d\n", vet[0] == 3);
 
     //modificar para tamanho de 1 para 4
     printf("%d\n", modificarTamanhoEstruturaAuxiliar(2, 3) == SUCESSO);
     printf("%d\n", getQuantidadeElementosEstruturaAuxiliar(2) == 1);
-    printf("%d\n", getDadosEstruturaAuxiliar(2, vet) == SUCESSO);
+    printf("%d\n", getDadosEstruturaAuxiliar(2, vet, vetTam) == SUCESSO);
     printf("%d\n", vet[0] == 3);
 
     printf("%d\n", inserirNumeroEmEstrutura(2, 4) == SUCESSO);
@@ -259,9 +274,12 @@ void testeMudarTamanhoEstrutura()
 void testeListaEncadeada()
 {
     show_log("testeListaEncadeada()");
-    int vet[10];
+
+    int vet[10], vetTam = 10;
+
     No *inicio = montarListaEncadeadaComCabecote();
-    getDadosListaEncadeadaComCabecote(inicio, vet);
+    
+    getDadosListaEncadeadaComCabecote(inicio, vet, vetTam);
 
     printf("%d\n", vet[0] == 3);
     printf("%d\n", vet[1] == 4);

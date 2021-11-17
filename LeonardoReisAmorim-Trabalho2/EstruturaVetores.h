@@ -18,18 +18,21 @@ int criarEstruturaAuxiliar(int posicao, int tamanho);
 int inserirNumeroEmEstrutura(int posicao, int valor);
 int excluirNumeroDoFinaldaEstrutura(int posicao);
 int excluirNumeroEspecificoDeEstrutura(int posicao, int valor);
-int getDadosEstruturaAuxiliar(int posicao, int vetorAux[]);
-int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[]);
-int getDadosDeTodasEstruturasAuxiliares(int vetorAux[]);
-int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[]);
+int getDadosEstruturaAuxiliar(int posicao, int vetorAux[], int tamVet);
+int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[], int tamVet);
+int getDadosDeTodasEstruturasAuxiliares(int vetorAux[], int tamVet);
+int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[], int tamVet);
 int modificarTamanhoEstruturaAuxiliar(int posicao, int novoTamanho);
 int getQuantidadeElementosEstruturaAuxiliar(int posicao);
 No *montarListaEncadeadaComCabecote();
-void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[]);
+void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[], int tamVet);
 void destruirListaEncadeadaComCabecote(No **inicio);
 
 void inicializar();
 void finalizar();
 void dobrar(int *x);
+
+int PosicaoValida(int posicao);
+int Posicao(int pos);
 
 #endif  // TRABALHO2_ESTRUTURAVETORES_H
