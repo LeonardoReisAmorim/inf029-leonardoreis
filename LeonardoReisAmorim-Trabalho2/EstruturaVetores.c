@@ -139,18 +139,18 @@ Retorno (int)
     SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
-int getDadosEstruturaAuxiliar(int posicao, int vetorAux[], int vetTam)
+int getDadosEstruturaAuxiliar(int posicao, int vetorAux[])
 {
     if(Posicao(posicao))
         return Posicao(posicao)==POSICAO_INVALIDA ? POSICAO_INVALIDA : SEM_ESTRUTURA_AUXILIAR;
 
-    int i=1, j=0;
-    while (i <= *(vetorPrincipal[posicao][0]) && j < vetTam){
+    int i, j;
+    int qtdElem = getQuantidadeElementosEstruturaAuxiliar(posicao);
+    for(i = 1, j = 0; j < qtdElem && i <= *(vetorPrincipal[posicao][0]); i++){
         if(vetorPrincipal[posicao][i]){
             vetorAux[j] = *(vetorPrincipal[posicao][i]);
             j++;
         }
-        i++;
     }
     return SUCESSO;
 }
@@ -163,22 +163,23 @@ Rertono (int)
     SEM_ESTRUTURA_AUXILIAR - Não tem estrutura auxiliar
     POSICAO_INVALIDA - Posição inválida para estrutura auxiliar
 */
-int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[], int vetTam)
+int getDadosOrdenadosEstruturaAuxiliar(int posicao, int vetorAux[])
 {
-    int ret = 0, i=0, j=0, aux=0;
+    int ret = 0, i, j, aux;
     
-    ret = getDadosEstruturaAuxiliar(posicao, vetorAux, vetTam);
+    ret = getDadosEstruturaAuxiliar(posicao, vetorAux);
 
-    if (ret==SUCESSO) {
-        while (i < vetTam){
-            for (j = i + 1; j < vetTam; j++){
+    int qtdElem = getQuantidadeElementosEstruturaAuxiliar(posicao);
+
+    if (ret == SUCESSO) {
+        for (i = 0; i < qtdElem; i++){
+            for (j = i + 1; j < qtdElem; j++){
                 if (vetorAux[j] < vetorAux[i]){
                     aux = vetorAux[i];
                     vetorAux[i] = vetorAux[j];
                     vetorAux[j] = aux;
                 }
             }
-            i++;
         }
     }
 
@@ -192,20 +193,28 @@ Rertono (int)
     SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
     TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estão vazias
 */
-int getDadosDeTodasEstruturasAuxiliares(int vetorAux[], int vetTam)
+int getDadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
-    int i = 1, j = 0, m = 0;
+    int i, j = 0, k, m, qtdElem = 1, posicao;
 
-    while (j < vetTam && i <= TAM){
-        if (vetorPrincipal[i]){
-            for (m = 1; j < vetTam && m <= *(vetorPrincipal[i][0]); m++){
-                if(vetorPrincipal[i][m]){
-                    vetorAux[j] = *(vetorPrincipal[i][m]);
+    for(i = 1; j < qtdElem && i <= TAM; i++){
+        if(vetorPrincipal[i]){
+            posicao = i;
+            qtdElem = getQuantidadeElementosEstruturaAuxiliar(posicao);
+            qtdElem += TAM;
+            for(k = 1; j < qtdElem && k <= *(vetorPrincipal[i][0]); k++){
+                if(vetorPrincipal[i][k]){
+                    vetorAux[j] = *(vetorPrincipal[i][k]);
                     j++;
                 }
             }
+            for(m = (i + 1); m <= TAM; m++){
+                if(vetorPrincipal[m]){
+                    qtdElem = getQuantidadeElementosEstruturaAuxiliar(m);
+                    break;
+                }
+            }   
         }
-        i++;
     }
     return j ? SUCESSO : TODAS_ESTRUTURAS_AUXILIARES_VAZIAS;
 }
@@ -217,26 +226,25 @@ Rertono (int)
     SUCESSO - recuperado com sucesso os valores da estrutura na posição 'posicao'
     TODAS_ESTRUTURAS_AUXILIARES_VAZIAS - todas as estruturas auxiliares estão vazias
 */
-int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[], int vetTam)
+int getDadosOrdenadosDeTodasEstruturasAuxiliares(int vetorAux[])
 {
-    int ret = 0, i=0, j=0, aux=0;
+    int retorno = 0, i, j, aux;
 
-    ret = getDadosDeTodasEstruturasAuxiliares(vetorAux, vetTam);
+    retorno = getDadosDeTodasEstruturasAuxiliares(vetorAux);
 
-    if (ret==SUCESSO){
-        while (i < vetTam){
-            for (j = i + 1; j < vetTam; j++){
+    if (retorno == SUCESSO){
+        for (i = 0; i < (TAM - 1); i++){
+            for (j = i + 1; j < (TAM - 1); j++){
                 if (vetorAux[j] < vetorAux[i]){
-                    aux = vetorAux[i];
+                    int aux = vetorAux[i];
                     vetorAux[i] = vetorAux[j];
                     vetorAux[j] = aux;
                 }
             }
-            i++;
         }
     }
 
-    return ret;
+    return retorno;
 }
 
 /*
@@ -338,7 +346,7 @@ No *montarListaEncadeadaComCabecote()
 /*
 Objetivo: retorna os números da lista enceada com cabeçote armazenando em vetorAux.
 Retorno void
-*/
+
 void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[], int vetTam)
 {
     int i = 0;
@@ -354,7 +362,7 @@ Objetivo: Destruir a lista encadeada com cabeçote a partir de início.
 O ponteiro inicio deve ficar com NULL.
 Retorno 
     void.
-*/
+
 void destruirListaEncadeadaComCabecote(No **inicio)
 {
     No *no = *inicio;
@@ -367,7 +375,7 @@ void destruirListaEncadeadaComCabecote(No **inicio)
 
     *inicio = NULL;
 }
-
+*/
 /*
 Objetivo: inicializa o programa. deve ser chamado ao inicio do programa 
 */
