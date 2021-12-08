@@ -2,7 +2,7 @@
 #include "recursao.h"
 
 int main(void) {
-  /*int q1;
+  int q1;
   printf("\n====================== Q1 =======================\n");
   printf("digite um numero: ");
   scanf("%d",&q1);
@@ -70,6 +70,6 @@ int main(void) {
   scanf("%d",&m);
   printf("digite um numero: ");
   scanf("%d",&n);
-  printf("\n%d ",h(m, n));*/
+  printf("\n%d ",h(m, n));
   return 0;
 }
