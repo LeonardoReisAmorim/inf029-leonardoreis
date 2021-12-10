@@ -16,7 +16,7 @@ int tetranacci(int n) {
 
 int main(void) {
     int n;
-    printf("\n====================== Q29 =======================\n");
+    printf("\n====================== Q21 =======================\n");
     printf("digite um numero: ");
     scanf("%d",&n);
     printf("\n%d ",tetranacci(n));

@@ -9,10 +9,11 @@ int somaVetor(int vet[], int n) {
 }
 
 int main(void) {
-    int vet[5],i,num;
+    int i=0,num;
     printf("\n====================== Q4 =======================\n");
     printf("digite quantos elementos deseja somar: ");
     scanf("%d",&num);
+    int vet[num];
     for(i=0;i<num;i++){
         printf("\ndigite um numero: ");
         scanf("%d",&vet[i]);
